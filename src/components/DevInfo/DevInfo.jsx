@@ -1,34 +1,31 @@
-import React from 'react'
-import {Box, Typography} from '@mui/material'
+import React from 'react';
+import { Box, Typography, Stack, Container, Grid } from '@mui/material';
+import logo from '../../assets/logo/logo.png';
+import facebook from '../../assets/icons/fb.png';
+import youtube from '../../assets/icons/yt.png';
+import twitter from '../../assets/icons/twitter.png';
+import pinterest from '../../assets/icons/pinterest.png';
+import Links from './Links';
 
-export default function DevInfo() {
+// DevInfo Component
+export function DevInfo() {
   return (
-    <Box Box bgcolor="#0c2b5c" display='flex' justifyContent='center' alignItems='center'  py={1}>
-      <Typography color='#fff' fontWeight={200} fontSize={14}>
+    <Box bgcolor="#0c2b5c" display="flex" justifyContent="center" alignItems="center" py={1}>
+      <Typography color="#fff" fontWeight={200} fontSize={14}>
         This App is developed By Ajay Ghodake
       </Typography>
     </Box>
-  )
-}import React from "react";
-import { Box, Typography, Stack, Container, Grid } from "@mui/material";
-import logo from "../../assets/logo/logo.png";
-import facebook from "../../assets/icons/fb.png";
-import youtube from "../../assets/icons/yt.png";
-import twitter from "../../assets/icons/twitter.png";
-import pinterest from "../../assets/icons/pinterest.png";
-import Links from "./Links";
+  );
+}
 
+// Footer Component
 export default function Footer() {
   return (
     <Box bgcolor="primary.secondary" pb={3} pt={6}>
       <Container maxWidth="xl">
         <Grid container spacing={4}>
           <Grid item xs={12} md={4.5}>
-            <Stack
-              alignItems="flex-start"
-              justifyContent="space-between"
-              height={1}
-            >
+            <Stack alignItems="flex-start" justifyContent="space-between" height={1}>
               <Box component="img" src={logo} alt="Medify" height={36} mb={2} />
               <Stack direction="row" spacing={1.5}>
                 <Box component="img" src={facebook} height={36} />
