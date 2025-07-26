@@ -1,9 +1,15 @@
-import React from "react";
-import { Box, Typography, Button, Stack, Divider, Chip } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  Button,
+  Stack,
+  Divider,
+  Chip,
+} from "@mui/material";
 import HospitalIcon from "../../assets/hospitalicon.png";
 import thumbsup from "../../assets/icons/thumbsup.png";
 import { format } from "date-fns";
-import { useState } from "react";
 import Calendar from "../Calander/Calendar";
 
 export default function HospitalCard({
@@ -12,7 +18,7 @@ export default function HospitalCard({
   handleBooking,
   booking = false,
 }) {
-  const [showCalander, setShowCalander] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   return (
     <Box sx={{ borderRadius: 2, bgcolor: "#fff", p: { xs: 2, md: 4 } }}>
@@ -40,7 +46,7 @@ export default function HospitalCard({
             textTransform="capitalize"
             lineHeight={1}
           >
-            {details["Hospital Name"].toLowerCase()}
+            {details["Hospital Name"]?.toLowerCase()}
           </Typography>
           <Typography
             color="#414146"
@@ -48,7 +54,7 @@ export default function HospitalCard({
             fontSize={14}
             textTransform="capitalize"
           >
-            {`${details["City"].toLowerCase()}, ${details["State"]}`}
+            {details.City?.toLowerCase()}, {details.State}
           </Typography>
           <Typography fontSize={14} mb={1}>
             {details["Hospital Type"]}
@@ -69,6 +75,7 @@ export default function HospitalCard({
             </Typography>
             <Typography>Consultation fee at clinic</Typography>
           </Stack>
+
           <Divider sx={{ borderStyle: "dashed", mb: 2 }} />
 
           <Stack
@@ -119,11 +126,9 @@ export default function HospitalCard({
               <Button
                 variant="contained"
                 disableElevation
-                onClick={() => setShowCalander((prev) => !prev)}
+                onClick={() => setShowCalendar((prev) => !prev)}
               >
-                {!showCalander
-                  ? "Book FREE  Center Visit"
-                  : "Hide Booking Calendar"}
+                {showCalendar ? "Hide Booking Calendar" : "Book FREE Center Visit"}
               </Button>
             </>
           )}
@@ -147,10 +152,13 @@ export default function HospitalCard({
         </Stack>
       </Stack>
 
-      {showCalander && (
-       <Calendar details={details} slotsAvailable={slotsAvailable} handleBooking={handleBooking}/>
+      {showCalendar && (
+        <Calendar
+          details={details}
+          slotsAvailable={slotsAvailable}
+          handleBooking={handleBooking}
+        />
       )}
-      
     </Box>
   );
 }
